@@ -1,0 +1,14 @@
+﻿@page "/attr"
+<h3 style="color:@farbe">Attr</h3>
+<input @bind ="farbe" @bind:event="oninput" @ref="eingabe1"/><br />
+<input value="@farbe" @oninput="(_)=>farbe=_.Value?.ToString()" />
+<div class="btn btn-primary" @onclick="click">click</div>
+@code {
+    string farbe = "green";
+    ElementReference eingabe1;
+    void click()
+    {
+        farbe = "blue";
+        eingabe1.FocusAsync();
+    }
+}
