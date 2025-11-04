@@ -1,0 +1,18 @@
+﻿@page "/naviA"
+@page "/naviB"
+@inject NavigationManager navigationManager
+<h3>Navi</h3>
+<a href="naviA">A</a><br/>
+<a href="naviB">B</a>
+<br />
+<button class="btn btn-outline-info" @onclick="B">navigiere zu B</button>
+@code {
+    void B()
+    {
+        navigationManager.NavigateTo("naviB");
+        navigationManager.LocationChanged += (sender, args) =>
+        {
+            Console.WriteLine($"Navigated to:{args.Location}");
+        };
+    }
+}
