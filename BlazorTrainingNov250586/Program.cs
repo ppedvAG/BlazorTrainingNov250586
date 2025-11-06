@@ -1,5 +1,7 @@
 using BlazorTrainingNov250586.Components;
 using BlazorTrainingNov250586.Components.Pages.Modul4;
+using BlazorTrainingNov250586.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,15 @@ builder.Services.AddRazorComponents()
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<ToDoVM>();
 builder.Services.AddSingleton<ChatVM>();
+
+//builder.Services.AddDbContext<NorthwindContext>(
+//    o=>o.UseSqlServer(builder.Configuration.GetConnectionString("northwind")));
+//Scaffolding QuickGrid
+builder.Services.AddDbContextFactory<NorthwindContext>(
+    o => o.UseSqlServer(builder.Configuration.GetConnectionString("northwind")));
+builder.Services.AddQuickGridEntityFrameworkAdapter();
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -17,6 +28,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+    app.UseMigrationsEndPoint();
 }
 
 app.UseHttpsRedirection();
