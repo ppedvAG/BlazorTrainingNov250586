@@ -1,0 +1,25 @@
+﻿@page "/modal"
+<h3>UseModal</h3>
+<button class="btn btn-outline-primary" @onclick="anzeigen">open</button>
+
+<Modalppedv Titel="Hallo Welt!" @ref="modal1" OnSave="save">    
+    <p>
+        <div class="mb-3">
+            <label for="companyname" class="form-label">CompanyName:</label>
+            <input id="companyname" @bind="CompanyName" class="form-control" />
+         </div>
+    </p>
+</Modalppedv>
+@code {
+    Modalppedv modal1;
+    string CompanyName;
+    void anzeigen()
+    {
+        modal1.Show();
+    }
+    void save()
+    {
+        CompanyName = ""; //Fake Save
+        modal1.Show();
+    }
+}
