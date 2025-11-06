@@ -1,0 +1,43 @@
+﻿@page "/personedit/{PersonId:int?}"
+<h3>PersonEdit</h3>
+<EditForm Model="VM" OnSubmit="save">
+    <DataAnnotationsValidator />
+    <div class="mb-3 row">
+        <label  class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            
+            <InputText class="form-control" @bind-Value="VM.Name"></InputText>
+            <ValidationMessage For="() => VM.Name"></ValidationMessage>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Geb Dat</label>
+        <div class="col-sm-10">
+
+            <InputDate class="form-control" @bind-Value="VM.GebDat"></InputDate>
+            <ValidationMessage For="() => VM.GebDat"></ValidationMessage>
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Gross</label>
+        <div class="col-sm-10">
+
+            <InputNumber class="form-control" @bind-Value="VM.Gross"></InputNumber>
+            <ValidationMessage For="() => VM.Name"></ValidationMessage>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">save</button>
+    <ValidationSummary></ValidationSummary>
+</EditForm>
+@code {
+        [Parameter]
+        public int PersonId { get; set; }
+        Person VM = new();
+        void save(EditContext ctx)
+        {
+            if (ctx.Validate())
+        {
+            
+        }
+        }
+}
