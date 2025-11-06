@@ -1,0 +1,33 @@
+﻿<h3>Component @Wert</h3>
+<h1>@Wert2</h1>
+<div style="background-color:aqua" @attributes="@AdditionalHannes">@ChildContent</div>
+@if (ItemTemplate==null)
+{
+    @EmptyItemTemplate
+}
+else
+{
+    @ItemTemplate
+}
+
+@code {
+    [Parameter]
+    public int Wert { get; set; }
+    [Parameter]
+    [EditorRequired]
+    public string Wert2 { get; set; }
+
+    [Parameter(CaptureUnmatchedValues =true)]
+    public Dictionary<string, object> AdditionalHannes { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public RenderFragment ItemTemplate { get; set; }
+    [Parameter]
+    public RenderFragment EmptyItemTemplate { get; set; }
+    [CascadingParameter]
+    public int MyProperty { get; set; }
+    [CascadingParameter(Name="hannes1")]
+    public string MyProperty2 { get; set; }
+}
+
