@@ -1,18 +1,17 @@
 ﻿@page "/uc"
 <h3>UseComponent</h3>
 <CascadingValue Value="@("hannes")" Name="hannes1">
-<CascadingValue Value="42" >
-    <Component Wert="42" @ref="comp1" Wert2="hannes will es so"
-               width="100px" style="background-color:chocolate">
+    <CascadingValue Value="42">
+        <Component Wert="42" @ref="comp1" Wert2="hannes will es so"
+                   width="100px" style="background-color:chocolate">
+            <ItemTemplate>
+                <p>
+                    das ist text <br />und noch ne Zeiel
 
-        <ItemTemplate>
-            <p>
-                das ist text <br />und noch ne Zeiel
-
-            </p>
-        </ItemTemplate>
-        <EmptyItemTemplate>Da ist nichts da</EmptyItemTemplate>
-    </Component>
+                </p>
+            </ItemTemplate>
+            <EmptyItemTemplate>Da ist nichts da</EmptyItemTemplate>
+        </Component>
     </CascadingValue>
 </CascadingValue>
 @code {
