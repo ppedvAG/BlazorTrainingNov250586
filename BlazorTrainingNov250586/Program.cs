@@ -12,11 +12,11 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<ToDoVM>();
 builder.Services.AddSingleton<ChatVM>();
 
-//builder.Services.AddDbContext<NorthwindContext>(
-//    o=>o.UseSqlServer(builder.Configuration.GetConnectionString("northwind")));
-//Scaffolding QuickGrid
-builder.Services.AddDbContextFactory<NorthwindContext>(
+builder.Services.AddDbContext<NorthwindContext>(
     o => o.UseSqlServer(builder.Configuration.GetConnectionString("northwind")));
+//Scaffolding QuickGrid
+//builder.Services.AddDbContextFactory<NorthwindContext>(
+//    o => o.UseSqlServer(builder.Configuration.GetConnectionString("northwind")));
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

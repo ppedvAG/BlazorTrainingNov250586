@@ -1,0 +1,40 @@
+﻿@page "/repeater"
+@using BlazorTrainingNov250586.Models
+@inject NorthwindContext db
+
+<h3>UseRepeater</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Company Name</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <Repeaterppedv 
+            ModelType="Customer" Context="item" 
+            SelectMethod="GetCustomers">
+            <ItemTemplate>
+                <tr>
+                    <td>@item.CustomerId</td>
+                    <td>@item.CompanyName</td>
+                </tr>
+            </ItemTemplate>
+
+            <EmptyItemTemplate>
+                <tr>
+                    <td colspan="2">No customers found.</td>
+                </tr>
+            </EmptyItemTemplate>
+        </Repeaterppedv>
+    </tbody>
+</table>
+
+@code {
+    List<Customer> GetCustomers()
+    {
+        var customers = db.Customers.ToList();
+        return customers;
+    }
+}

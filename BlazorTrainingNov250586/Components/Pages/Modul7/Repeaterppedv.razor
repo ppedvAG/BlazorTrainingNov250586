@@ -1,0 +1,33 @@
+﻿@using BlazorTrainingNov250586.Models
+@typeparam ModelType
+
+
+@if (Liste?.Any()??false)
+{
+    @foreach (var item in Liste)
+    {
+           @ItemTemplate(item)
+    }
+ 
+}
+else
+{
+    @EmptyItemTemplate
+}
+
+@code {
+    List<ModelType> Liste;
+
+    [Parameter]
+    public RenderFragment<ModelType> ItemTemplate { get; set; }
+    [Parameter]
+    public RenderFragment EmptyItemTemplate { get; set; }
+    [Parameter]
+    public Func<List<ModelType>> SelectMethod { get; set; }
+
+    protected override void OnInitialized()
+    {
+       Liste= SelectMethod?.Invoke();
+
+    }
+}
