@@ -1,0 +1,36 @@
+﻿@page "/js"
+@inject IJSRuntime jsRuntime
+<h3>JS</h3>
+<button class="btn btn-outline-primary" @onclick="ShowAlert">Show Alert</button>
+<button class="btn btn-outline-primary" @onclick="ShowPrompt">Show Prompt</button>
+<button class="btn btn-outline-primary" @onclick="ShowImport">Show Import</button>
+@Eingabe
+<script>
+    //böse
+    window.ppedv=function( msg)
+    {
+        return prompt(msg);
+    }
+</script>
+@code {
+    string Eingabe;
+    void ShowAlert()
+    {
+        jsRuntime.InvokeVoidAsync("alert", "Hello from Blazor!");
+    }
+    async  Task ShowPrompt()
+    {
+        Eingabe= await jsRuntime.InvokeAsync<string>("ppedv", "Hello from Blazor!");
+    }
+    async Task ShowImport()
+    {
+        Eingabe = await MiniJSRuntime.InvokeAsync<string>("ppedv", "Servus");
+    }
+    IJSObjectReference MiniJSRuntime;
+    //nur bei Prerender false
+    protected override async Task OnInitializedAsync()
+    {
+        MiniJSRuntime= await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./components/pages/modul8/js.razor.js");
+    }
+
+}
