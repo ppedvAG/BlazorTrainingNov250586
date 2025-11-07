@@ -2,6 +2,7 @@ using BlazorTrainingNov250586.Components;
 using BlazorTrainingNov250586.Components.Pages.Modul4;
 using BlazorTrainingNov250586.Models;
 using Microsoft.EntityFrameworkCore;
+using RazorClassLibrary1;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<ToDoVM>();
 builder.Services.AddSingleton<ChatVM>();
-
+builder.Services.AddSingleton<ExampleJsInterop>();
 builder.Services.AddDbContext<NorthwindContext>(
     o => o.UseSqlServer(builder.Configuration.GetConnectionString("northwind")));
 //Scaffolding QuickGrid
